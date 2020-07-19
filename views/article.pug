@@ -7,4 +7,5 @@ block content
     h5 Written By #{article.author}
     p=article.body
     hr
-    a.btn.btn-primary(href=`/article/edit/${article._id}`) Edit
+    a.btn.btn-primary.my-2.mr-2(href=`/article/edit/${article._id}`) Edit
+    button.btn.btn-danger.delete-article(data-id=`${article._id}`) Delete

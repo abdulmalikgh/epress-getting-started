@@ -106,4 +106,14 @@ app.post('/article/edit/:id', (req, res)=>{
     })
     
 })
+// deleting article
+app.delete(`/article/:id`, (req,res) => {
+    const query = {_id:req.params.id}
+    Article.remove(query, function(err){
+       if(err) {
+            console.log(err)
+       } 
+       res.send('Success')
+    })
+})
 app.listen(port, () => console.log('Your app is listen on port', port))
