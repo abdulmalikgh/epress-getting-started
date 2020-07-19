@@ -79,7 +79,7 @@ app.post('/articles/add', (req, res) => {
     })
 
 })
-// edit article
+// Load edit form
 app.get('/article/edit/:id', (req,res) => {
     Article.findById(req.params.id, (err, article)=> {
         res.render('edit_article', {
@@ -87,6 +87,23 @@ app.get('/article/edit/:id', (req,res) => {
             article:article
         })
     }) 
+    
+})
+//Edit Article
+app.post('/article/edit/:id', (req, res)=>{
+    let article = {}
+    article.title = req.body.title
+    article.author = req.body.author
+    article.body = req.body.body
+    const query ={_id:req.params.id}
+    
+    Article.update(query, article, (err)=> {
+        if(err) {
+            console.log(err)
+        } else {
+            res.redirect('/')
+        }
+    })
     
 })
 app.listen(port, () => console.log('Your app is listen on port', port))
